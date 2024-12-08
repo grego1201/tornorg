@@ -1,3 +1,3 @@
 class Player < ApplicationRecord
-  GENDER = ["male", "female"]
+  GENDER = [ "male", "female" ]
 end

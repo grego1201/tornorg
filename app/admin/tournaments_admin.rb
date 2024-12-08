@@ -1,6 +1,6 @@
-Trestle.resource(:players) do
+Trestle.resource(:tournaments) do
   menu do
-    item :players, icon: "fa fa-star"
+    item :tournaments, icon: "fa fa-star"
   end
 
    # Customize the table columns shown on the index view.
@@ -11,10 +11,11 @@ Trestle.resource(:players) do
    #   actions
    # end
 
-   form do |player|
-     text_field :first_name
-     text_field :last_name
-     date_field :birthday
+   # Customize the form fields shown on the new/edit views.
+
+   form do |tournament|
+     text_field :name
+     date_field :date
      select :gender, Player::GENDER.map { |gender| [ gender.capitalize, gender ] }
 
      row do
@@ -31,6 +32,6 @@ Trestle.resource(:players) do
   #   http://guides.rubyonrails.org/action_controller_overview.html#strong-parameters
   #
   # params do |params|
-  #   params.require(:player).permit(:name, ...)
+  #   params.require(:tournament).permit(:name, ...)
   # end
 end
