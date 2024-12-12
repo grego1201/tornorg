@@ -19,8 +19,8 @@ Trestle.resource(:tournaments) do
      select :gender, Tournament::GENDER.map { |gender| [ gender.capitalize, gender ] }
 
      row do
-       col { datetime_field :updated_at }
-       col { datetime_field :created_at }
+       col { static_field :updated_at }
+       col { static_field :created_at }
      end
    end
 

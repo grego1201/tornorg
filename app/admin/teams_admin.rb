@@ -4,7 +4,6 @@ Trestle.resource(:teams) do
   end
 
   table do
-    column :id
     column :tournament, header: "Tournament" do |team|
       tournament = team.tournament
       admin_link_to(tournament.name_with_date, tournament)
