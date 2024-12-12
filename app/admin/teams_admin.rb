@@ -3,33 +3,29 @@ Trestle.resource(:teams) do
     item :teams, icon: "fa fa-star"
   end
 
-  # Customize the table columns shown on the index view.
-  #
-  # table do
-  #   column :name
-  #   column :created_at, align: :center
-  #   actions
-  # end
+  table do
+    column :id
+    column :tournament, header: "Tournament" do |team|
+      tournament = team.tournament
+      admin_link_to(tournament.name_with_date, tournament)
+    end
+    column :created_at, align: :center
+    column :updated_at, align: :center
 
-  # Customize the form fields shown on the new/edit views.
-  #
-  # form do |team|
-  #   text_field :name
-  #
-  #   row do
-  #     col { datetime_field :updated_at }
-  #     col { datetime_field :created_at }
-  #   end
-  # end
+    actions
+  end
 
-  # By default, all parameters passed to the update and create actions will be
-  # permitted. If you do not have full trust in your users, you should explicitly
-  # define the list of permitted parameters.
-  #
-  # For further information, see the Rails documentation on Strong Parameters:
-  #   http://guides.rubyonrails.org/action_controller_overview.html#strong-parameters
-  #
-  # params do |params|
-  #   params.require(:team).permit(:name, ...)
-  # end
+  form do |team|
+    static_field :id
+    collection_select :tournament_id, Tournament.all, :id, :name_with_date
+
+    row do
+      col { static_field :updated_at }
+      col { static_field :created_at }
+    end
+  end
+
+  params do |params|
+    params.require(:team).permit("tournament_id")
+  end
 end
