@@ -11,7 +11,7 @@ Trestle.resource(:tournaments) do
     actions do |toolbar, instance, admin|
       toolbar.edit if admin && admin.actions.include?(:edit)
       toolbar.delete if admin && admin.actions.include?(:destroy)
-      toolbar.link 'Generate groups', instance, action: :generate_groups,
+      toolbar.link "Generate groups", instance, action: :generate_groups,
         method: :post, style: :primary, icon: "fa fa-check",
         confirm: "Are you sure?"
     end
@@ -32,7 +32,7 @@ Trestle.resource(:tournaments) do
     def generate_groups
       tournament = admin.find_instance(params)
       tournament.team_ids.in_groups_of(4, false).each do |team_ids|
-        Group.create(tournament: tournament, team_ids: [1, 3])
+        Group.create(tournament: tournament, team_ids: team_ids)
       end
       flash[:message] = "Groups created for touranament #{tournament.name}"
       redirect_to admin.path(:index)
