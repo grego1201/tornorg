@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_12_12_102435) do
+ActiveRecord::Schema[8.0].define(version: 2024_12_20_104500) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -40,6 +40,13 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_12_102435) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "groups", force: :cascade do |t|
+    t.bigint "tournament_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tournament_id"], name: "index_groups_on_tournament_id"
+  end
+
   create_table "players", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
@@ -60,6 +67,8 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_12_102435) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "tournament_id"
+    t.bigint "group_id"
+    t.index ["group_id"], name: "index_teams_on_group_id"
     t.index ["tournament_id"], name: "index_teams_on_tournament_id"
   end
 
@@ -70,4 +79,6 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_12_102435) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_foreign_key "groups", "tournaments"
 end
