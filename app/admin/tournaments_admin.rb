@@ -16,11 +16,11 @@ Trestle.resource(:tournaments) do
    form do |tournament|
      text_field :name
      date_field :date
-     select :gender, Player::GENDER.map { |gender| [ gender.capitalize, gender ] }
+     select :gender, Tournament::GENDER.map { |gender| [ gender.capitalize, gender ] }
 
      row do
-       col { datetime_field :updated_at }
-       col { datetime_field :created_at }
+       col { static_field :updated_at }
+       col { static_field :created_at }
      end
    end
 
