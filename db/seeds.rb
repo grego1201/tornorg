@@ -11,7 +11,7 @@
 
 
 def create_players
-  50.times do |index|
+  32.times do |index|
     Player.create(
       first_name: Faker::Name.first_name,
       last_name: "#{index} #{Faker::Name.last_name}",
