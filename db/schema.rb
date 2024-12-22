@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_12_22_163902) do
+ActiveRecord::Schema[8.0].define(version: 2024_12_22_174028) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -52,6 +52,8 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_22_163902) do
     t.bigint "team_visitant_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "group_id"
+    t.index ["group_id"], name: "index_matches_on_group_id"
     t.index ["team_local_id"], name: "index_matches_on_team_local_id"
     t.index ["team_visitant_id"], name: "index_matches_on_team_visitant_id"
   end
