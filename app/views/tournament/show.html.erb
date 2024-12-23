@@ -1,0 +1,20 @@
+<div class="container my-5">
+  <h1 class="text-center mb-4"><%= @tournament.name %></h1>
+
+  <table class="table table-striped table-bordered">
+    <thead class="table-light">
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Teams</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @tournament.groups.each do |group| %>
+        <tr>
+          <td><%= group.id %></td>
+          <td><%= group.teams.map(&:last_names).join(" || ") %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
